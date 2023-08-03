@@ -7,8 +7,10 @@ public class Teleport_dor1 : MonoBehaviour
     public Transform trl;
     public GameObject gmj;
     public GameObject gj;
+    public GameObject gjp;
     public float z0 = 0;
     public float z1 = 0;
+   
     void OnTriggerStay (Collider other)
     {
         if (other.gameObject.name == "Player")
@@ -16,8 +18,9 @@ public class Teleport_dor1 : MonoBehaviour
             gmj.SetActive (true);
         }
         
-        if ((other.gameObject.name == "Player") && (Input.GetKeyDown(KeyCode.E)))
+        if ((other.gameObject.name == "Player") && ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyUp(KeyCode.E))))
         { 
+            gj.SetActive (true);
             z0 = 1;
         }
         if (z0 == 1)
@@ -26,10 +29,10 @@ public class Teleport_dor1 : MonoBehaviour
             gj.transform.localScale = z1 * new Vector3(1, 1, 0) * Time.deltaTime * 5;
 
         }
-        if ((z1 >= 100) && (z0 == 1))
+        if ((z1 >= 70) && (z0 == 1))
         {
             z0 = 2;
-            other.transform.position = trl.transform.position;
+            gjp.transform.position = trl.transform.position;
         }
         if (z0 == 2)
         {

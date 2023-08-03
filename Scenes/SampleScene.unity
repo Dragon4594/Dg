@@ -36247,7 +36247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trl: {fileID: 219620816}
   gmj: {fileID: 1099574049}
-  gj: {fileID: 0}
+  gj: {fileID: 1806566761}
+  gjp: {fileID: 1921307756}
   z0: 0
   z1: 0
 --- !u!65 &1025983802
@@ -62623,6 +62624,7 @@ MonoBehaviour:
   trl: {fileID: 1806566762}
   gmj: {fileID: 1099574049}
   gj: {fileID: 470234660}
+  gjp: {fileID: 1921307756}
   z0: 0
   z1: 0
 --- !u!65 &1776207772
@@ -64766,6 +64768,7 @@ MonoBehaviour:
   trl: {fileID: 1776207775}
   gmj: {fileID: 1099574049}
   gj: {fileID: 470234660}
+  gjp: {fileID: 1921307756}
   z0: 0
   z1: 0
 --- !u!65 &1806566764
