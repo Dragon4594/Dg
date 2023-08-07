@@ -8,6 +8,7 @@ public class Teleport_dor1 : MonoBehaviour
     public GameObject gmj;
     public GameObject gj;
     public GameObject gjp;
+    public GameObject gjp2;
     public float z0 = 0;
     public float z1 = 0;
    
@@ -21,6 +22,7 @@ public class Teleport_dor1 : MonoBehaviour
         if ((other.gameObject.name == "Player") && ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyUp(KeyCode.E))))
         { 
             gj.SetActive (true);
+            gjp2.SetActive(true);
             z0 = 1;
         }
         if (z0 == 1)
@@ -43,6 +45,7 @@ public class Teleport_dor1 : MonoBehaviour
         if ((z1 <= 0) && (z0 == 2))
         {
             z0 = 0;
+            gjp2.SetActive(false);
         }
 
         
