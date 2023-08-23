@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
-using TMPro;
 
 public class Glomal_ : MonoBehaviour
 {
@@ -24,7 +23,6 @@ public class Glomal_ : MonoBehaviour
     public float s = 0;
     public TextMeshProUGUI text;
     private float t = 0;
-    private  float g = 100;
     private float t12 = 0;
     private float t13 = 10;
     void OnTriggerStay(Collider other)
@@ -98,6 +96,7 @@ public class Glomal_ : MonoBehaviour
                 c = 1;
                 transform.localPosition = t6.transform.position;
                 gmj.transform.position = t6.transform.position;
+                gmj.transform.transform.rotation = t6.transform.rotation;
                 transform.localScale = 0 * Vector3.one;
                 transform.localScale = 5 * Vector3.one;
                 
@@ -109,8 +108,8 @@ public class Glomal_ : MonoBehaviour
                 gmj.transform.position = t7.transform.position;
                 transform.localScale = 0 * Vector3.one;
                 transform.localScale = 5 * Vector3.one;
-                
-            }
+                gmj.transform.transform.rotation = t7.transform.rotation;
+        }
 
 
             if ((other.gameObject.name == "Player") && (Input.GetKey(KeyCode.E)))
@@ -120,6 +119,8 @@ public class Glomal_ : MonoBehaviour
             l = 1;
             transform.localPosition = t8.transform.position; 
             gmj.transform.position = t8.transform.position;
+            //gmj.transform.Rotate(1 * new Vector3(0, 0, 0));
+            gmj.transform.transform.rotation= t8.transform.rotation;
         }
         if (i < 0)
         {
@@ -137,11 +138,12 @@ public class Glomal_ : MonoBehaviour
         
         s = s + Time.deltaTime;
         
-        if (s >= g)
+        if (s >= 60)
         {
             t = t + 1;
-            g = g + 60;
-
+            t12 = 0;
+            s = 0;
+            t13 = 10;
         }
         if (s>= t13)
         {
@@ -150,14 +152,14 @@ public class Glomal_ : MonoBehaviour
         }
         if (t12 == 0)
         {
-            text.text = "time" + t + ":00/6:00";
+            text.text = "time " + t + ":00/6:00";
         }
         if (t12 > 0)
         {
-            text.text = "time" + t + ":" + t12 + "/6:00";
+            text.text = "time " + t + ":" + t12 + "/6:00";
         }
             
-        if (s >= 60)
+        if (t >= 6)
        
             {
                 Cursor.lockState = CursorLockMode.None;

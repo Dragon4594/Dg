@@ -9,6 +9,8 @@ public class Teleport_dor1 : MonoBehaviour
     public GameObject gj;
     public GameObject gjp;
     public GameObject gjp2;
+    public GameObject off;
+    public GameObject off2;
     public float z0 = 0;
     public float z1 = 0;
    
@@ -24,6 +26,8 @@ public class Teleport_dor1 : MonoBehaviour
             gj.SetActive (true);
             gjp2.SetActive(true);
             z0 = 1;
+            off.SetActive(false);
+            off2.SetActive(false);
         }
         if (z0 == 1)
         {
@@ -46,6 +50,8 @@ public class Teleport_dor1 : MonoBehaviour
         {
             z0 = 0;
             gjp2.SetActive(false);
+            off.SetActive(true);
+            off2.SetActive(false);
         }
 
         

@@ -7,9 +7,38 @@ public class Menu_skr : MonoBehaviour
 {
     public GameObject menu1;
     public GameObject nast;
+    public GameObject YesOrNo;
+    public GameObject gamecomplite;
+    private int N = -1;
+    public void newGame()
+    {
+        menu1.SetActive(false);
+        YesOrNo.SetActive(true);
+    }
+    public void newGameNo()
+    {
+        menu1.SetActive(true);
+        YesOrNo.SetActive(false);
+    }
+    public void newGameYes()
+    {
+        
+            N = 0;
+            PlayerPrefs.SetInt("nightN", N);
+            SceneManager.LoadScene(1);
+        
+    }
     public void Pl()
     {
-        SceneManager.LoadScene(1);
+        N = PlayerPrefs.GetInt("nightN");
+        if (((N>=0) && (N<=5)))
+        {
+            SceneManager.LoadScene(1);
+        }
+        if ((N > 5)) 
+        {
+            gamecomplite.SetActive(true);
+        }
     }
     public void Pl1()
     {

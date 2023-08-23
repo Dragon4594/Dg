@@ -11,6 +11,17 @@ public class Gm_scr : MonoBehaviour
     private float hp_ok = 100.0f;
     public GameObject gjs;
     public TextMeshProUGUI text;
+    public GameObject screm1;
+    public GameObject screm2;
+    public GameObject kill;
+   /* private void Start()
+    {
+       if (PlayerPrefs.HasKey("nightN"))
+        {
+            hp_ok = hp_ok + (100*  PlayerPrefs.GetInt("nightN"));
+        } 
+    }*/
+     
     void OnTriggerStay(Collider other)
     {
        
@@ -18,7 +29,7 @@ public class Gm_scr : MonoBehaviour
         if ( (other.gameObject.name == "Cub1") || (other.gameObject.name == "Cub2"))
         {
             //gjs.SetActive(true);
-            hp_ok = hp_ok - (Time.deltaTime*2.5f);
+            hp_ok = hp_ok - (Time.deltaTime*2);
             text.text = "hp: " + hp_ok;
         }
         if  (other.gameObject.name == "Player")
@@ -27,11 +38,16 @@ public class Gm_scr : MonoBehaviour
             text.text = "Hp: " + hp_ok;
 
         }
-        if (hp_ok <= 0)
+        if ((hp_ok <= 0) && (other.gameObject.name == "Cub1"))
         {
-            SceneManager.LoadScene(0);
-            Cursor.lockState = CursorLockMode.None;
+            screm1.transform.position = kill.transform.position;
         }
+        if ((hp_ok <= 0) && (other.gameObject.name == "Cub2"))
+        {
+            screm2.transform.position = kill.transform.position;
+        }
+
+
 
     }
     void OnTriggerExit(Collider other)
@@ -65,8 +81,29 @@ public class Gm_scr : MonoBehaviour
         }
         if ((i1==1)&& (i2 == 1) && (i3 == 1) && (i4 == 1))
         {
-            hp_ok = 1000000.0f;
+            
+            
+            
+            if (PlayerPrefs.GetFloat("c") <= 0)
+            {
+                PlayerPrefs.SetFloat("c", 1000000.0f);
+            }
+            hp_ok = 0;
+            hp_ok = 100;
+            hp_ok = hp_ok + PlayerPrefs.GetFloat("c");
         }
+        if ((i1 == 1) && (i2 == 1) && (Input.GetKey(KeyCode.Z)))
+        {
+            if (PlayerPrefs.GetFloat("c") >= 0)
+                {
+                PlayerPrefs.SetFloat("c", 0);
+                hp_ok = 0;
+                hp_ok = 100;
+                hp_ok = hp_ok + PlayerPrefs.GetFloat("c");
+            }
+        }
+
+
     }
 
 }

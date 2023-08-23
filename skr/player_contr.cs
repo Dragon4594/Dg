@@ -6,7 +6,9 @@ public class player_contr : MonoBehaviour
 {
     public float speed = 5.0f;
     public float stamin1 = 100.0f;
-    
+    public GameObject pl;
+    public GameObject shg;
+    public GameObject soundPouse;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,23 +39,31 @@ public class player_contr : MonoBehaviour
         {
             stamin1 = stamin1 + (Time.deltaTime*5)  ;
         }
-
+       
 
         if (Input.GetKey(KeyCode.W))
         {
-            transform.localPosition += transform.forward * speed * Time.deltaTime;
+            pl.transform.transform.position += pl.transform.forward * speed * Time.deltaTime;
+            shg.SetActive(true);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.localPosition += -transform.forward * speed * Time.deltaTime;
+            pl.transform.transform.position += -pl.transform.forward * speed * Time.deltaTime;
+            shg.SetActive(true);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.localPosition += -transform.right * speed * Time.deltaTime;
+            pl.transform.transform.position += -pl.transform.right * speed * Time.deltaTime;
+            shg.SetActive(true);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.localPosition += transform.right * speed * Time.deltaTime;
+            pl.transform.transform.position += pl.transform.right * speed * Time.deltaTime;
+            shg.SetActive(true);
+        }
+        if ((Input.GetKeyUp(KeyCode.D)) || (Input.GetKeyUp(KeyCode.A)) || (Input.GetKeyUp(KeyCode.S)) || (Input.GetKeyUp(KeyCode.W)))
+        {
+            shg.SetActive(false);
         }
 
     }

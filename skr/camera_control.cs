@@ -10,7 +10,9 @@ public class camera_control : MonoBehaviour
     // Start is called before the first frame update
     private float mouseX;
     private float mouseY;
+    public float r = 0;
     public Transform Player;
+    public GameObject cam;
     [Header("Чувствительность мыши")]
     public float sM = 200f;
     void Start()
@@ -34,11 +36,18 @@ public class camera_control : MonoBehaviour
         mouseX = Input.GetAxis("Mouse X") * sM * Time.deltaTime;
         mouseY = Input.GetAxis("Mouse Y") * sM * Time.deltaTime;
         Player.Rotate(mouseX * new Vector3(0, 1, 0));
-        if ((mouseY >= -90.0) && (mouseY <= 90.0) && !(Input.GetKey(KeyCode.R)))
+        if ((r >= -80.0) && (r <= 80.0) && !(Input.GetKey(KeyCode.R)))
         {
-            transform.Rotate(-mouseY * new Vector3(1, 0, 0));
+            cam.transform.Rotate(-mouseY * new Vector3(1, 0, 0));
         }
-
+        if ((mouseY > 0) && (r <= 80.0))
+        {
+            r = r + mouseY;
+        }
+        if ((mouseY < 0) && (r >= -80.0))
+        {
+            r = r + mouseY;
+        }
         if (Input.GetKeyDown(KeyCode.R))
         {
             transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -48,8 +57,18 @@ public class camera_control : MonoBehaviour
         {
             transform.Rotate(180 * new Vector3(0, 1, 0));
         }
-        
+        if (PlayerPrefs.HasKey("cam"))
+        {
+            r = PlayerPrefs.GetInt("cam");
+        }
+        if (r >= 900)
+        {
+            r = 0;
+            PlayerPrefs.GetInt("cam",0);
+            transform.Rotate(0 * new Vector3(1, 1, 1));
+        }
+    }
 
 
     }
-}
+
